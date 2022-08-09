@@ -1,8 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 function Stars(props) {
-  let [rating] = useState(0);
+  const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
+  const isFirstRender = useRef(true);
+
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false; // toggle flag after first render/mounting
+      return;
+    }
+
+    console.log("useEffect: ", rating);
+
+    props.onClick({
+      rating: rating,
+    });
+  }, [rating]);
 
   const handleOnClick = (e) => {
     //initialize function level rating variable
@@ -16,13 +30,14 @@ function Stars(props) {
     }
     console.log(ratingValue);
 
-    rating = ratingValue;
-
-    console.log(rating);
-
-    props.onClick({
-      rating: rating,
-    });
+    //call props on click if the rating value never changes from the previous click
+    if (rating === ratingValue) {
+      props.onClick({
+        rating: rating,
+      });
+    } else {
+      setRating(ratingValue);
+    }
   };
 
   //dynamic class display for stars used in parent components

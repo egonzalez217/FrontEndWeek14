@@ -7,14 +7,10 @@ import Stars from "./Stars";
 function ReviewForm(props) {
   const [input, setInput] = useState("");
   const [id, setId] = useState(0);
-  let [starRating, setStarRating] = useState(0);
+  const [starRating, setStarRating] = useState(0);
 
   const addRating = (rating) => {
-    let newStarRating = rating;
-
-    starRating = newStarRating;
-
-    console.log(starRating);
+    setStarRating(rating);
   };
 
   const handleOnChange = (e) => {

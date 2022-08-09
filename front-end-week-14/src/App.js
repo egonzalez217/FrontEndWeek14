@@ -1,6 +1,7 @@
 import "./App.css";
 import Navbar1 from "./components/Navbar1";
 import Movie from "./components/Movie";
+import MovieList from "./components/MovieList";
 
 function App() {
   return (
@@ -8,9 +9,7 @@ function App() {
       <Navbar1></Navbar1>
       <br />
       <br />
-      <Movie movieName="yo"></Movie>
-      <Movie movieName="no"></Movie>
-      <Movie movieName="se"></Movie>
+      <MovieList></MovieList>
     </div>
   );
 }
